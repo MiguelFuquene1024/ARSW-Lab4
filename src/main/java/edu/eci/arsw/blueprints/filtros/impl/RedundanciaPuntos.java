@@ -11,11 +11,13 @@ import edu.eci.arsw.blueprints.model.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Acer
  */
+@Component("Redundancia")
 public class RedundanciaPuntos implements Filtro{
 
     @Override

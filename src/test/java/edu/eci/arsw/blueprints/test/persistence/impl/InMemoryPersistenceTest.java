@@ -16,11 +16,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author hcadavid
  */
+@Component("inMemoryPersistence")
 public class InMemoryPersistenceTest {
     
     @Test
