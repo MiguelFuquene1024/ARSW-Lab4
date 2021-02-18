@@ -11,6 +11,7 @@ import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
 import edu.eci.arsw.blueprints.persistence.BlueprintPersistenceException;
 import edu.eci.arsw.blueprints.persistence.BlueprintsPersistence;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import org.springframework.stereotype.Service;
@@ -44,17 +45,35 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
 
     @Override
     public Blueprint getBlueprint(String author, String bprintname) throws BlueprintNotFoundException {
-        return blueprints.get(new Tuple<>(author, bprintname));
+        if((blueprints.get(new Tuple<>(author, bprintname)) != null)){
+            return blueprints.get(new Tuple<>(author, bprintname));
+        }
+        throw new BlueprintNotFoundException("Blueprint no se pudo encontrar");
     }
 
     @Override
     public Set<Blueprint> getBlueprintsByAuthor(String author) throws BlueprintNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Set<Blueprint> bluePrinthash = new HashSet<Blueprint>();
+        for(Tuple<String,String> blueprint:blueprints.keySet()){
+            if(blueprint.getElem1().equals(author)){
+                bluePrinthash.add(blueprints.get(blueprint));
+            }
+        }
+        if(bluePrinthash.size()!=0){
+            return bluePrinthash;
+        }
+        throw new BlueprintNotFoundException("No se pudieron encontrar blueprints"); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Set<Blueprint> getAllBlueprints() throws BlueprintNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Set<Blueprint> bluePrinthash = new HashSet<Blueprint>();
+        for (Tuple<String, String> blueprint : blueprints.keySet()) {
+            if (!blueprint.getElem1().equals("_authorname_")) {
+                bluePrinthash.add(blueprints.get(blueprint));
+            }
+        }
+        return bluePrinthash;
     }
 
     

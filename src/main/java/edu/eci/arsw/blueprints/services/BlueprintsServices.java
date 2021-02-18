@@ -56,5 +56,12 @@ public class BlueprintsServices {
         return bpp.getBlueprintsByAuthor(author);    
     }
     
+    /*public Blueprint filterBlueprint(Blueprint blueprint) {
+        return filter.filterBlueprint(blueprint);
+    }
+    
+    public Set<Blueprint> multiFilter(Set<Blueprint> blueprints) {
+        return filter.multiFilter(blueprints);
+    }*/
     
 }
