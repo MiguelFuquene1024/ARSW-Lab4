@@ -90,10 +90,9 @@ public class InMemoryPersistenceTest {
     @Test(expected = BlueprintNotFoundException.class)
     public void canNotGetBlueprint() throws BlueprintNotFoundException {
         InMemoryBlueprintPersistence ibpp = new InMemoryBlueprintPersistence();
-        //Crear blueprint
+
         Point[] pts = new Point[]{new Point(0, 0), new Point(10, 10)};
         Blueprint bp = new Blueprint("johann", "JEG", pts);
-        //Guardamos blueprint
         try {
             ibpp.saveBlueprint(bp);
         } catch (BlueprintPersistenceException ex) {
@@ -105,19 +104,19 @@ public class InMemoryPersistenceTest {
     @Test
     public void canGetBlueprintsByAuthor() {
         InMemoryBlueprintPersistence ibpp = new InMemoryBlueprintPersistence();
-        //Crear blueprints
+
         Point[] pts = new Point[]{new Point(0, 0), new Point(10, 10)};
         Blueprint bp1 = new Blueprint("johann", "JEG", pts);
         Point[] pts2 = new Point[]{new Point(0, 0), new Point(10, 10)};
         Blueprint bp2 = new Blueprint("johann", "JEG", pts);
         Point[] pts3 = new Point[]{new Point(0, 0), new Point(10, 10)};
         Blueprint bp3 = new Blueprint("johann", "JEG", pts);
-        //Set de blueprints
+
         Set<Blueprint> blueprintSet = new HashSet<Blueprint>();
         blueprintSet.add(bp1);
         blueprintSet.add(bp2);
         blueprintSet.add(bp3);
-        //Guardamos los blueprints
+
         try {
             ibpp.saveBlueprint(bp1);
             ibpp.saveBlueprint(bp2);
@@ -125,7 +124,7 @@ public class InMemoryPersistenceTest {
         } catch (BlueprintPersistenceException ex) {
             fail("No se pudo guardar el BluePrint");
         }
-        //Comparar que los set blueprint son iguales
+
         try {
             Set<Blueprint> blueprintSetResult = ibpp.getBlueprintsByAuthor("johann");
             assertEquals(blueprintSetResult, blueprintSet);
@@ -137,19 +136,19 @@ public class InMemoryPersistenceTest {
     @Test(expected = BlueprintNotFoundException.class)
     public void canNotGetBlueprintsByAuthor() throws BlueprintNotFoundException {
         InMemoryBlueprintPersistence ibpp = new InMemoryBlueprintPersistence();
-        //Crear blueprints
+
         Point[] pts = new Point[]{new Point(0, 0), new Point(10, 10)};
         Blueprint bp = new Blueprint("johann", "JEG", pts);
         Point[] pts2 = new Point[]{new Point(0, 0), new Point(10, 10)};
         Blueprint bp2 = new Blueprint("johann", "JEG", pts);
         Point[] pts3 = new Point[]{new Point(0, 0), new Point(10, 10)};
         Blueprint bp3 = new Blueprint("johann", "JEG", pts);
-        //Set de blueprints
+
         Set<Blueprint> blueprintSet = new HashSet<Blueprint>();
         blueprintSet.add(bp);
         blueprintSet.add(bp2);
         blueprintSet.add(bp3);
-        //Guardamos los blueprints
+
         try {
             ibpp.saveBlueprint(bp);
             ibpp.saveBlueprint(bp2);
@@ -157,7 +156,8 @@ public class InMemoryPersistenceTest {
         } catch (BlueprintPersistenceException ex) {
             fail("No se pudo guardar el BluePrint");
         }
-        //Comparar que los set blueprint son iguales
+
+
         Set<Blueprint> blueprintSetResult = ibpp.getBlueprintsByAuthor("Guaton");
     }
 

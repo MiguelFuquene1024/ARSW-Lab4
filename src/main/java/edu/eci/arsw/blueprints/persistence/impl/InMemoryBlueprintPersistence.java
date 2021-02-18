@@ -63,6 +63,7 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
             return bluePrinthash;
         }
         throw new BlueprintNotFoundException("No se pudieron encontrar blueprints"); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
@@ -75,7 +76,5 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
         }
         return bluePrinthash;
     }
-
-    
     
 }
